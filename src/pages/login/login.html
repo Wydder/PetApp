@@ -1,0 +1,148 @@
+<!--
+  Generated template for the LoginPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+	<div id="loginSection_id" class="login_section">
+		<ion-list>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin(loginForm.value)">
+
+        <ion-item [ngClass]="{'error-border':!loginForm.controls.username.valid && loginForm.controls.username.touched}">
+          <ion-label floating>Username</ion-label>
+          <!--<ion-input type="text" [(ngModel)]="username"></ion-input>-->
+          <ion-input type="text" formControlName="username"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="loginForm.controls.username.hasError('pattern') && loginForm.controls.username.touched">
+          <p>Sorry, only small and capital letters are allowed!</p>
+        </ion-item>
+        <ion-item *ngIf="loginForm.controls.username.hasError('minLength') && loginForm.controls.username.touched">
+          <p>Sorry, minimum username length is 4!</p>
+        </ion-item>
+        <ion-item *ngIf="loginForm.controls.username.hasError('maxLength') && loginForm.controls.username.touched">
+          <p>Sorry, maximum username length is 30!</p>
+        </ion-item>
+
+        <ion-item [ngClass]="{'error-border':!loginForm.controls.password.valid && loginForm.controls.password.touched}">
+          <ion-label floating>Password</ion-label>
+          <!--<ion-input type="password" [(ngModel)]="password"></ion-input>-->
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <!--error-->
+        <ion-item *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
+          <p>Sorry, field password is required!</p>
+        </ion-item>
+        <ion-item *ngIf="loginForm.controls.password.hasError('minlength') && loginForm.controls.password.touched">
+          <p>Sorry, minimum password length is 5!</p>
+        </ion-item>
+
+        <button ion-button full [disabled]="!loginForm.valid">Login</button>
+
+      </form>
+
+
+			<p class="information_text">Don't have an account?</p>
+
+			<button ion-button full (click)="registerPageHandler()">Sign up here!</button>
+		</ion-list>
+	</div>
+
+	<div id="registerSection_id" class="register_section hidden">
+		<ion-list>
+			<button id="backButton" ion-button small (click)="registerBackButton()"><ion-icon name="md-arrow-back"></ion-icon></button>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister(registerForm.value)">
+
+        <!--USERNAME-->
+
+        <ion-item [ngClass]="{'error-border':!registerForm.controls.usernameRegister.valid && registerForm.controls.usernameRegister.touched}">
+          <ion-label floating>Username</ion-label>
+          <ion-input type="text" formControlName="usernameRegister"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.usernameRegister.hasError('pattern') && registerForm.controls.usernameRegister.touched">
+          <p>Sorry, only small and capital letters are allowed!</p>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.usernameRegister.hasError('minLength') && registerForm.controls.usernameRegister.touched">
+          <p>Sorry, minimum username length is 4!</p>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.usernameRegister.hasError('maxLength') && registerForm.controls.usernameRegister.touched">
+          <p>Sorry, maximum username length is 30!</p>
+        </ion-item>
+
+        <!--FULLNAME-->
+
+        <ion-item [ngClass]="{'error-border':!registerForm.controls.fullnameRegister.valid && registerForm.controls.fullnameRegister.touched}">
+          <ion-label floating>Full Name</ion-label>
+          <!--<ion-input type="text" [(ngModel)]="fullnameRegister"></ion-input>-->
+          <ion-input type="text" formControlName="fullnameRegister"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.fullnameRegister.hasError('pattern') && registerForm.controls.fullnameRegister.touched">
+          <p>Sorry, only small and capital letters are allowed!</p>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.fullnameRegister.hasError('minLength') && registerForm.controls.fullnameRegister.touched">
+          <p>Sorry, minimum fullname length is 4!</p>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.fullnameRegister.hasError('maxLength') && registerForm.controls.fullnameRegister.touched">
+          <p>Sorry, maximum fullname length is 30!</p>
+        </ion-item>
+
+        <!--EMAIL-->
+
+        <ion-item [ngClass]="{'error-border':!registerForm.controls.emailRegister.valid && registerForm.controls.emailRegister.touched}">
+          <ion-label floating>Email</ion-label>
+          <!--<ion-input type="text" [(ngModel)]="emailRegister"></ion-input>-->
+          <ion-input type="email" formControlName="emailRegister"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.emailRegister.hasError('pattern') && registerForm.controls.emailRegister.touched">
+          <p>Sorry, only email type is allowed!</p>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.emailRegister.hasError('minLength') && registerForm.controls.emailRegister.touched">
+          <p>Sorry, minimum email length is 4!</p>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.emailRegister.hasError('maxLength') && registerForm.controls.emailRegister.touched">
+          <p>Sorry, maximum email length is 30!</p>
+        </ion-item>
+
+        <!--PASSWORD-->
+
+        <ion-item [ngClass]="{'error-border':!registerForm.controls.passwordRegister.valid && registerForm.controls.passwordRegister.touched}">
+          <ion-label floating>Password</ion-label>
+          <!--<ion-input type="text" [(ngModel)]="passwordRegister"></ion-input>-->
+          <ion-input type="password" formControlName="passwordRegister"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.passwordRegister.hasError('pattern') && registerForm.controls.passwordRegister.touched">
+          <p>Sorry, only small and capital letters are allowed!</p>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.passwordRegister.hasError('minLength') && registerForm.controls.passwordRegister.touched">
+          <p>Sorry, minimum password length is 4!</p>
+        </ion-item>
+        <ion-item *ngIf="registerForm.controls.passwordRegister.hasError('maxLength') && registerForm.controls.passwordRegister.touched">
+          <p>Sorry, maximum password length is 30!</p>
+        </ion-item>
+
+        <button ion-button full [disabled]="!registerForm.valid">Sign up!</button>
+
+      </form>
+
+			<!--<ion-item>-->
+			    <!--<ion-label floating>Full name</ion-label>-->
+			    <!--<ion-input type="text" [(ngModel)]="fullnameRegister"></ion-input>-->
+		    <!--</ion-item>-->
+		    <!--<ion-item>-->
+			    <!--<ion-label floating>Username</ion-label>-->
+			    <!--<ion-input type="text" [(ngModel)]="usernameRegister"></ion-input>-->
+		    <!--</ion-item>-->
+		    <!--<ion-item>-->
+			    <!--<ion-label floating>Email</ion-label>-->
+			    <!--<ion-input type="email" [(ngModel)]="emailRegister"></ion-input>-->
+		    <!--</ion-item>-->
+		    <!--<ion-item>-->
+			    <!--<ion-label floating>Password</ion-label>-->
+			    <!--<ion-input type="password" [(ngModel)]="passwordRegister"></ion-input>-->
+		    <!--</ion-item>-->
+		    <!--<p id="text_danger" class="information_text"></p>-->
+		</ion-list>
+	</div>
+</ion-content>
+
+

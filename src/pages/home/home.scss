@@ -1,0 +1,93 @@
+page-home {
+  .scroll-content {
+    background-color: #4fb3a7;
+
+  }
+  ion-fab[bottom] {
+    bottom: 25px;
+    right: 25px;
+  }
+
+  #cancel_btn {
+    bottom: 100px;
+  }
+
+
+  #my_pets {
+    .thumbnail_pets {
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.20);
+
+      .item-inner {
+        border-bottom: transparent;
+      }
+    }
+  }
+
+  #view_pet {
+
+    .item-block {
+      .item-inner {
+        border-bottom-color: #4fb3a7;
+      }
+    }
+    ion-item-group {
+      margin-bottom: 10px;
+      .detail_of_pet {
+        color: #da3847;
+      }
+      .item-md {
+        background: rgba(255, 255, 255, 0.2);
+        padding-right: 16px;
+      }
+      .item-md:first-child {
+        color: #00463e;
+      }
+      .item-md:last-child {
+        color: #4d608a;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-bottom: transparent;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .detail_of_pet .item-inner {
+        border-bottom: none;
+      }
+    }
+  }
+
+  #add_pet {
+
+    ion-item-group {
+      .item-md:last-child {
+        color: #4d608a;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-bottom: transparent;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+
+        .label-md {
+          color: #025047;
+        }
+      }
+
+    }
+
+    .item-block {
+      .item-inner {
+        border-bottom-color: #4fb3a7;
+      }
+    }
+
+    ion-item {
+      background: rgba(255, 255, 255, 0.2);
+      padding-right: 16px;
+    }
+  }
+}
+.unhide {
+  display: block;
+}
+.hide {
+  display: none;
+}

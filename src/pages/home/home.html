@@ -1,0 +1,365 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="primary" hideBackButton>
+    <ion-buttons left>
+      <button id="back_to_my_pets" class="hide" ion-button color="light" small icon-only clear (click)="back_btn()" style="font-size: 1.2em;">
+        <ion-icon name="md-arrow-back"></ion-icon>
+      </button>
+      <button id="log_out" class="" ion-button color="light" small icon-only clear (click)="logout()" style="font-size: 1.2em;">
+        <ion-icon name="md-log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title id="app_title" class="" text-center>Petsy</ion-title>
+
+    <ion-buttons end>
+      <button id="add_pet_btn" class="" ion-button color="light" small icon-only clear (click)="add_pet_btn()" style="font-size: 1.2em;">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+      <button id="delete_pet" class="hide" ion-button color="light" small icon-only clear (click)="delete_btn()" style="font-size: 1.2em;">
+        <ion-icon name="md-trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div id="my_pets" class="">
+    <ion-list>
+      <ion-item *ngFor="let pet of pets_of_user" class="thumbnail_pets">
+        <ion-thumbnail item-start>
+          <img src="http://botezatuionut.com/wydder/api/upload-directory/" + {{ pet.link_profile_picture }}>
+        </ion-thumbnail>
+        <h2>{{ pet.pet_name }}</h2>
+        <p>{{ pet.pet_fullname }}</p>
+        <button ion-button clear item-end (click)="show_pet(pet.userPetId)">View</button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+  <div id="view_pet" class="hide">
+      <ion-list>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Nickname:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.pet_name }}</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <ion-input type="text" [(ngModel)]="current_pet.pet_name"></ion-input>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Fullname:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.pet_fullname }}</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <ion-input type="text" [(ngModel)]="current_pet.pet_fullname"></ion-input>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Birth date:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.birth_date }}</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <ion-datetime type="text" [(ngModel)]="current_pet.birth_date"></ion-datetime>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Breed:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.rasa_pet }}</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <ion-input type="text" [(ngModel)]="current_pet.rasa_pet"></ion-input>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Gender:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.pet_gender }}</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <!--<ion-input type="text" [(ngModel)]="current_pet.pet_gender"></ion-input>-->
+            <ion-label>Pick gender:</ion-label>
+            <ion-select [(ngModel)]="current_pet.pet_gender">
+              <ion-option value="female">Female</ion-option>
+              <ion-option value="male">Male</ion-option>
+              <ion-option value="Sterilized/Neuter">Sterilized/Neuter</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Weight:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.greutate_pet }} kg</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <ion-input type="number" [(ngModel)]="current_pet.greutate_pet"></ion-input>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Color:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.culoare_pet }}</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <ion-label>Pick color:</ion-label>
+            <ion-select type="text" [(ngModel)]="current_pet.culoare_pet">
+              <ion-option value="Dark">Dark</ion-option>
+              <ion-option value="Bright">Bright</ion-option>
+              <ion-option value="Yellow">Yellow</ion-option>
+              <ion-option value="Brown">Brown</ion-option>
+              <ion-option value="White">White</ion-option>
+              <ion-option value="Multiple colors">Multiple colors</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Age:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.age }} years</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <ion-label>{{ current_pet.age }}</ion-label>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Internal deworming:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.deparazitare_interna_pet }}</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <ion-datetime type="text" [(ngModel)]="current_pet.deparazitare_interna_pet"></ion-datetime>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>External deworming:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.deparazitare_externa_pet }}</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <ion-datetime type="text" [(ngModel)]="current_pet.deparazitare_externa_pet"></ion-datetime>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Annual vaccine:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>{{ current_pet.vaccin_pet }}</ion-label>
+          </ion-item>
+          <ion-item class="edit_input hide">
+            <ion-datetime type="text" [(ngModel)]="current_pet.vaccin_pet"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <button id="getImageEdit" ion-button color="secondary" (click)="getImage()">Get Image</button>
+          </ion-item>
+          <ion-item>
+            <h4>Image Preview</h4>
+            <img src="{{ imageURI }}" *ngIf="imageFileName" alt="Ionic File" width="300" />
+          </ion-item>
+          <ion-item>
+            <button id="uploadFileEdit" ion-button (click)="uploadFileEdit()">Upload</button>
+          </ion-item>
+        </ion-item-group>
+      </ion-list>
+  </div>
+  <div id="add_pet" class="hide">
+    <form [formGroup]="addPetForm" (ngSubmit)="onSubmitPetAdd(addPetForm.value)">
+      <ion-list>
+        <ion-item-group>
+          <ion-item>
+            <button id="getImage" ion-button color="secondary" (click)="getImage()">Get Image</button>
+          </ion-item>
+          <ion-item>
+            <h4>Image Preview</h4>
+            <img src="{{imageURI}}" *ngIf="imageFileName" alt="Ionic File" width="300" />
+          </ion-item>
+          <ion-item>
+            <button id="uploadFile" class="hide" ion-button (click)="uploadFile()">Upload</button>
+          </ion-item>
+          <ion-item>
+            <ion-label>Nickname:</ion-label>
+          </ion-item>
+          <ion-item [ngClass]="{'error-border':!addPetForm.controls.pet_name.valid && addPetForm.controls.pet_name.touched}" class="detail_of_pet">
+            <ion-input type="text" formControlName="pet_name"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.pet_name.hasError('pattern') && addPetForm.controls.pet_name.touched">
+            <p>Sorry, only small and capital letters are allowed!</p>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.pet_name.hasError('minLength') && addPetForm.controls.pet_name.touched">
+            <p>Sorry, minimum pet nickname length is 4!</p>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.pet_name.hasError('maxLength') && addPetForm.controls.pet_name.touched">
+            <p>Sorry, maximum nickname length is 30!</p>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Fullname:</ion-label>
+          </ion-item>
+          <ion-item [ngClass]="{'error-border':!addPetForm.controls.pet_fullname.valid && addPetForm.controls.pet_fullname.touched}" class="detail_of_pet">
+            <ion-input type="text" formControlName="pet_fullname"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.pet_fullname.hasError('pattern') && addPetForm.controls.pet_fullname.touched">
+            <p>Sorry, only small and capital letters are allowed!</p>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.pet_fullname.hasError('minLength') && addPetForm.controls.pet_fullname.touched">
+            <p>Sorry, minimum full name length is 4!</p>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.pet_fullname.hasError('maxLength') && addPetForm.controls.pet_fullname.touched">
+            <p>Sorry, maximum full name length is 30!</p>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Pet type:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>Pick type of pet:</ion-label>
+            <ion-select type="text" formControlName="pet_type">
+              <ion-option value="1">Dog</ion-option>
+              <ion-option value="2">Cat</ion-option>
+              <ion-option value="3">Fish</ion-option>
+              <ion-option value="4">Turtle</ion-option>
+              <ion-option value="5">Mice</ion-option>
+              <ion-option value="6">Parrot</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Birth date:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-datetime type="text" formControlName="birth_date"></ion-datetime>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Breed:</ion-label>
+          </ion-item>
+          <ion-item [ngClass]="{'error-border':!addPetForm.controls.rasa_pet.valid && addPetForm.controls.rasa_pet.touched}" class="detail_of_pet">
+            <ion-input type="text" formControlName="rasa_pet"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.rasa_pet.hasError('pattern') && addPetForm.controls.rasa_pet.touched">
+            <p>Sorry, only small and capital letters are allowed!</p>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.rasa_pet.hasError('minLength') && addPetForm.controls.rasa_pet.touched">
+            <p>Sorry, minimum password length is 4!</p>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.rasa_pet.hasError('maxLength') && addPetForm.controls.rasa_pet.touched">
+            <p>Sorry, maximum password length is 30!</p>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Gender:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>Pick gender:</ion-label>
+            <ion-select type="text" formControlName="pet_gender">
+              <ion-option value="Female">Female</ion-option>
+              <ion-option value="Male">Male</ion-option>
+              <ion-option value="Sterilized/Neuter">Sterilized/Neuter</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Weight:</ion-label>
+          </ion-item>
+          <ion-item [ngClass]="{'error-border':!addPetForm.controls.greutate_pet.valid && addPetForm.controls.greutate_pet.touched}" class="detail_of_pet">
+            <ion-input type="text" formControlName="greutate_pet"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.greutate_pet.hasError('pattern') && addPetForm.controls.greutate_pet.touched">
+            <p>Sorry, only numbers are allowed!</p>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.greutate_pet.hasError('minLength') && addPetForm.controls.greutate_pet.touched">
+            <p>Sorry, minimum weight length is 1!</p>
+          </ion-item>
+          <ion-item *ngIf="addPetForm.controls.greutate_pet.hasError('maxLength') && addPetForm.controls.greutate_pet.touched">
+            <p>Sorry, maximum weight length is 3!</p>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Color:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-label>Pick color:</ion-label>
+            <ion-select type="text" formControlName="culoare_pet">
+              <ion-option value="Dark">Dark</ion-option>
+              <ion-option value="Bright">Bright</ion-option>
+              <ion-option value="Yellow">Yellow</ion-option>
+              <ion-option value="Brown">Brown</ion-option>
+              <ion-option value="White">White</ion-option>
+              <ion-option value="Multiple colors">Multiple colors</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Internal deworming:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-datetime type="text" formControlName="deparazitare_interna_pet"></ion-datetime>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>External deworming:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-datetime type="text" formControlName="deparazitare_externa_pet"></ion-datetime>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Annual vaccine:</ion-label>
+          </ion-item>
+          <ion-item class="detail_of_pet">
+            <ion-datetime type="text" formControlName="vaccin_pet"></ion-datetime>
+          </ion-item>
+        </ion-item-group>
+      </ion-list>
+      <button ion-button full [disabled]="!addPetForm.valid">Add pet!</button>
+    </form>
+  </div>
+  <ion-fab id="edit_btn" class="hide" (click)="edit_pet(current_pet.userPetId)" right bottom>
+    <button ion-fab><ion-icon name="create"></ion-icon></button>
+  </ion-fab>
+  <ion-fab id="save_btn" class="hide" (click)="save_pet(current_pet.userPetId)" right bottom>
+    <button ion-fab><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab>
+  <ion-fab id="cancel_btn" class="hide" (click)="cancel_update_pet()" right bottom>
+    <button ion-fab><ion-icon name="close-circle"></ion-icon></button>
+  </ion-fab>
+</ion-content>
